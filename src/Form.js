@@ -44,7 +44,7 @@ class Form extends React.Component {
   render () {
     const placeholder = `new ${this.props.resource}`
 
-    return <form
+    return <form style={{color: 'rgb(63, 173, 127)'}}
       onSubmit={this.onSubmit}
     >
       <input
@@ -54,7 +54,7 @@ class Form extends React.Component {
         onChange={this.onChange}
       />
 
-      <button>submit</button>
+      <button >submit</button>
 
       <button
         type='button'
