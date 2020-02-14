@@ -75,11 +75,18 @@ class App extends React.Component {
       </p>)
 
     return <div>
+      <form>
+        <input
+          type='text'
+          placeholder='new channel'
+        />
+      </form>
       <form onSubmit={this.onSubmit}>
         <input
           onChange={this.onChange}
           type='text'
           value={this.state.value}
+          placeholder='new message'
         />
 
         <button>submit</button>
