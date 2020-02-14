@@ -1,6 +1,7 @@
 import React from 'react'
 // import axios from 'axios'
 import Form from './Form'
+import './App.css'
 
 class App extends React.Component {
   state = {
@@ -75,7 +76,7 @@ class App extends React.Component {
         </p>)
       : null
 
-    return <div>
+    return <div className="App">
       <Form
         resource='channel'
         field='name'
