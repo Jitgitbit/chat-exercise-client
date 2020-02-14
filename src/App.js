@@ -2,6 +2,7 @@ import React from 'react'
 // import axios from 'axios'
 import Form from './Form'
 import './App.css'
+// const baseUrl = process.env.PORT || 4000
 
 class App extends React.Component {
   state = {
@@ -9,7 +10,7 @@ class App extends React.Component {
     channel: 'first'
   }
 
-  stream = new EventSource('http://localhost:4000/stream')
+  stream = new EventSource(process.env.PORT || 'http://localhost:4000/stream')
 
   componentDidMount () {
     this.stream.onmessage = event => {
