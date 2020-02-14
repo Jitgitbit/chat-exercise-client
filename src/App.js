@@ -1,10 +1,10 @@
 import React from 'react'
-import axios from 'axios'
+// import axios from 'axios'
+import Form from './Form'
 
 class App extends React.Component {
   state = {
-    messages: [],
-    value: ''
+    messages: []
   }
 
   stream = new EventSource('http://localhost:4000/stream')
@@ -18,11 +18,11 @@ class App extends React.Component {
 
       const { type, payload } = action
 
-      if (type === 'MESSAGES') {
+      if (type === 'ALL_MESSAGES') {
         this.setState({ messages: payload })
       }
 
-      if (type === 'MESSAGE') {
+      if (type === 'ONE_MESSAGE') {
         const messages = [
           ...this.state.messages,
           payload
@@ -31,36 +31,6 @@ class App extends React.Component {
         this.setState({ messages })
       }
     }
-  }
-
-  onSubmit = async (event) => {
-    event.preventDefault()
-
-    try {
-      const response = await axios
-        .post(
-          'http://localhost:4000/message',
-          { text: this.state.value }
-        )
-
-      console
-        .log('response test:', response)
-    } catch (error) {
-      console.log(error)
-    }
-
-    console.log('value test:', this.state.value)
-  }
-
-  onChange = (event) => {
-    const { value } = event.target
-
-    this.setState({ value })
-  }
-
-  clear = () => {
-    console.log('clear test')
-    this.setState({ value: '' })
   }
 
   render () {
@@ -75,26 +45,9 @@ class App extends React.Component {
       </p>)
 
     return <div>
-      <form>
-        <input
-          type='text'
-          placeholder='new channel'
-        />
-      </form>
-      <form onSubmit={this.onSubmit}>
-        <input
-          onChange={this.onChange}
-          type='text'
-          value={this.state.value}
-          placeholder='new message'
-        />
+      <Form resource='channel' />
 
-        <button>submit</button>
-      </form>
-
-      <button onClick={this.clear}>
-        Clear
-      </button>
+      <Form resource='message' />
 
       {paragraphs}
     </div>
