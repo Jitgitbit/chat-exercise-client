@@ -12,12 +12,18 @@ class Form extends React.Component {
     const url = `http://localhost:4000/${this.props.resource}`
 
     try {
+      const data = {
+        [this.props.field]: this.state.value 
+      }
+
+      if (
+        this.props.resource === 'message'
+      ) {
+        data.channelId = this.props.channelId
+      }
       // We do not use the response in any way
       const response = await axios
-        .post(
-          url,
-          { text: this.state.value }
-        )
+        .post(url, data)
 
       this.clear()
       // this.setState({ value: '' })
@@ -44,7 +50,7 @@ class Form extends React.Component {
   render () {
     const placeholder = `new ${this.props.resource}`
 
-    return <form style={{color: 'rgb(63, 173, 127)'}}
+    return <form
       onSubmit={this.onSubmit}
     >
       <input
@@ -54,7 +60,7 @@ class Form extends React.Component {
         onChange={this.onChange}
       />
 
-      <button >submit</button>
+      <button>submit</button>
 
       <button
         type='button'
