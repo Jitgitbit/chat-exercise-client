@@ -18,7 +18,7 @@ class App extends React.Component {
 
       const { type, payload } = action
 
-      if (type === 'ALL_MESSAGES') {
+      if (type === 'MESSAGES') {
         this.setState({ messages: payload })
       }
 
