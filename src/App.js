@@ -22,7 +22,7 @@ class App extends React.Component {
         this.setState({ messages: payload })
       }
 
-      if (type === 'ONE_MESSAGE') {
+      if (type === 'MESSAGE') {
         const messages = [
           ...this.state.messages,
           payload
