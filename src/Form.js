@@ -1,6 +1,8 @@
 import React from 'react'
 import axios from 'axios'
 
+const baseUrl = process.env.DATABASE_URL || 'https://agile-fortress-33580.herokuapp.com';
+
 class Form extends React.Component {
   state = {
     value: ''
@@ -9,7 +11,8 @@ class Form extends React.Component {
   onSubmit = async (event) => {
     event.preventDefault()
 
-    const url = `http://localhost:4000/${this.props.resource}`
+    // const url = `http://localhost:4000/${this.props.resource}`
+    const url = `${baseUrl}/${this.props.resource}`
 
     try {
       const data = {

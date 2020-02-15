@@ -2,7 +2,11 @@ import React from 'react'
 // import axios from 'axios'
 import Form from './Form'
 import './App.css'
+
 // const baseUrl = process.env.PORT || 4000
+
+const url = process.env.DATABASE_URL || 'https://agile-fortress-33580.herokuapp.com';
+const baseUrl = url
 
 class App extends React.Component {
   state = {
@@ -10,7 +14,8 @@ class App extends React.Component {
     channel: 'first'
   }
 
-  stream = new EventSource(process.env.PORT || 'http://localhost:4000/stream')
+  // stream = new EventSource('http://localhost:4000/stream')
+  stream = new EventSource(`${baseUrl}/stream`)
 
   componentDidMount () {
     this.stream.onmessage = event => {
