@@ -83,6 +83,7 @@ class App extends React.Component {
       : null
 
     return <div className="App">
+      <h1>Chattery chat chat app</h1>
       <Form
         resource='channel'
         field='name'
